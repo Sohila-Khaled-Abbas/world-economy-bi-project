@@ -1,3 +1,5 @@
 pandas
-ydata-profiling
-openpyxl
+seaborn
+matplotlib
+sweetviz
+dataprep.eda
