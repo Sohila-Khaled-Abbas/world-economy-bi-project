@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+.Python
+
+# Virtual Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter
+.ipynb_checkpoints
+*.nbconvert.ipynb
+
+# Data & Reports (Optional: keep raw data private if needed)
+data/raw/*
+!data/processed_data.csv
+
+# Logs & Reports
+logs/
+*.log
+reports/*.html
+
+# VS Code & IDE
+.vscode/
+.idea/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Cache
+*.cache
+*.pytest_cache/

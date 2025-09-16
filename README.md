@@ -1,107 +1,155 @@
-# 🌍 Global Economy Insights (BI + Python Project)
+# 🌍 Global Economy Analysis (World Bank + HDI)
 
-![Dashboard Preview](images/dashboard_preview.png)
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/Project%20Status-Active-success)
+![Power BI](https://img.shields.io/badge/BI%20Tool-Power%20BI-yellow)
+![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange)
 
-## 📌 Project Overview
-
-This project analyzes global economic development data from the **World Bank** and **United Nations Human Development Index (HDI)**.  
-It demonstrates a full **Business Intelligence workflow**:
-
-- Data cleaning & profiling (Python)
-- Data transformation (Power Query)
-- Interactive dashboard development (Power BI)
+A **data-driven one-page report** on the state of the global economy using World Bank and UN HDI datasets.  
+This project covers the full **ETL pipeline**, exploratory data analysis, and insight generation — preparing data for **Power BI dashboarding**.
 
 ---
 
-## 🗂 Project Structure
+## 📑 Table of Contents
 
-| Folder | Contents |
-|-------|-----------|
-| **data/** | Raw and processed data files |
-| **notebooks/** | Python Jupyter notebook for data cleaning & profiling |
-| **reports/** | HTML profiling report + PDF export of dashboard |
-| **powerbi/** | Power BI file (`.pbix`) |
-| **images/** | Dashboard screenshots for README and documentation |
-
----
-
-## 🚀 Workflow
-
-1. **Data Preparation (Python):**
-   - Import World Bank and HDI data
-   - Calculate `Population (M)` using GDP & GDP per Capita
-   - Merge with HDI data on `Country Code`
-   - Generate automated profiling report with `ydata-profiling`
-
-2. **Data Transformation (Power BI):**
-   - Create `gdp_pivot`, `pop_pivot`, `wb_hdi_by_region` tables
-   - Perform data type checks and relationship setup in Power BI model
-
-3. **Visualization (Power BI):**
-   - Stacked area charts for GDP & Population
-   - Bubble chart (Life Expectancy vs GDP per Capita vs Population)
-   - Bar chart (Average HDI by Region)
-   - Scatterplot (Power Consumption vs GDP per Capita, colored by HDI)
-
-4. **Reporting:**
-   - One-page Power BI dashboard with title and narrative context
-   - Key takeaway: **GDP per Capita and HDI correlation = 0.85 (2014)**
+- [🌍 Global Economy Analysis (World Bank + HDI)](#-global-economy-analysis-world-bank--hdi)
+  - [📑 Table of Contents](#-table-of-contents)
+  - [📖 About the Project](#-about-the-project)
+  - [📂 Dataset Description](#-dataset-description)
+  - [🔧 Project Pipeline](#-project-pipeline)
+  - [📁 Folder Structure](#-folder-structure)
+  - [⚙️ Setup \& Installation](#️-setup--installation)
+  - [📊 Results \& Insights](#-results--insights)
+    - [Sample histograms](#sample-histograms)
+  - [Future Improvements](#future-improvements)
+  - [📜 License](#-license)
+  - [👩‍💻 Author](#-author)
 
 ---
 
-## 📊 Key Insights
+## 📖 About the Project
 
-- **East Asia & Pacific** led global GDP growth in 2014.
-- **Sub-Saharan Africa** had the highest population growth.
-- Strong positive correlation (**0.85**) between GDP per Capita and HDI.
+This project demonstrates **Business Intelligence Project Management best practices**:
 
----
+- 🔄 **ETL (Extract, Transform, Load)** pipeline using Python  
+- 📊 **Data Profiling** with `skimpy`  
+- 📈 **One-page Power BI report** summarizing economic insights  
+- 💡 **Actionable metrics**: GDP, GDP per Capita, Population, HDI, Life Expectancy  
 
-## 🛠 Tech Stack
-
-- **Python** (`pandas`, `ydata-profiling`)
-- **Power BI** (Data modeling, DAX, visuals)
-- **Excel + CSV** (Data source)
+The notebook is **fully reproducible** — it auto-installs dependencies and saves processed outputs for easy visualization in Power BI or any BI tool.
 
 ---
 
-## 📷 Dashboard Preview
+## 📂 Dataset Description
 
-![Key Insights](images/key_insights.png)
+| Dataset                     | Source               | Records | Fields | Format |
+| --------------------------- | -------------------- | ------- | ------ | ------ |
+| **World Bank Indicators**   | World Bank Open Data | 12,657  | 58     | Excel  |
+| **Human Development Index** | United Nations       | ~200    | 2      | CSV    |
+
+Key fields used:  
+`GDP (USD)`, `GDP per capita (USD)`, `Year`, `Country Code`, `Region`, `Life Expectancy`, `Power Consumption`, `HDI`.
 
 ---
 
-## 📥 Installation
+## 🔧 Project Pipeline
 
-Clone this repo and install Python dependencies:
+```mermaid
+flowchart LR
+    A[Extract Data] --> B[Transform & Clean]
+    B --> C[Profile Data]
+    C --> D[Load Processed Dataset]
+    D --> E[Visualize in Power BI]
+```
+
+1. **Extract** – Import Excel + CSV data
+2. **Transform** – Filter 2014, calculate population, join HDI
+3. **Profile** – Summary statistics + histograms
+4. **Load** – Save processed CSV
+5. **Insights** – Correlation analysis + recommendations
+
+---
+
+## 📁 Folder Structure
+
+```wasm
+📦 global-economy-analysis
+├── data
+│   ├── WorldBank.xlsx
+│   ├── HDI.csv
+│   └── processed_data.csv
+├── notebooks
+│   └── global_economy_etl.ipynb
+├── reports
+│   └── images/
+│       ├── GDP_hist.png
+│       ├── GDP_per_Capita_hist.png
+│       ├── Population_(M)_hist.png
+│       └── HDI_hist.png
+├── README.md
+└── LICENSE
+```
+
+---
+
+## ⚙️ Setup & Installation
+
+Clone the repo and run the notebook:
 
 ```bash
-git clone https://github.com/<your-username>/world-economy-bi-project.git
-cd world-economy-bi-project
+Copy code
+git clone https://github.com/Sohila-Khaled-Abbas/global-economy-analysis.git
+cd global-economy-analysis
+
+# Launch Jupyter
+jupyter notebook notebooks/global_economy_etl.ipynb
+
+# Install dependencies
 pip install -r requirements.txt
+
 ```
+Dependencies are installed automatically by the notebook (`pandas`, `matplotlib`, `skimpy`).
+
 
 ---
 
-## 📌 Requirements
+## 📊 Results & Insights
 
-```nginx
-pandas
-ydata-profiling
-openpyxl
+```markdown
+| Metric                              | Key Insight                                   |
+| ----------------------------------- | --------------------------------------------- |
+| Correlation (GDP per Capita vs HDI) | 0.82 (Strong positive)                        |
+| Population Distribution             | Asia & Africa hold majority of population     |
+| HDI Ranking                         | Europe has highest average HDI, Africa lowest |
 ```
+
+### Sample histograms
+
+![GDP_(USD)_hist](/reports/images/GDP_(USD)_hist.png)
+![GDP_per_capita_hist](/reports/images/GDP_per_capita_(USD)_hist.png)
+![HDI_hist](/reports/images/HDI_hist.png)
+![Population_(M)_hist](/reports/images/Population_(M)_hist.png)
 
 ---
 
-## 📢 Contributing
+## Future Improvements
 
-Pull requests and suggestions are welcome!
-Feel free to open issues for improvements or add new visuals/metrics.
+- Add Power BI .pbix dashboard to the repo
+- Automate ETL pipeline with Airflow or Prefect
+- Add more indicators (education, inequality, emissions)
+- Deploy interactive dashboard via GitHub Pages or Streamlit
+
+---
+
+## 📜 License
+
+This project is licensed under the [MIT License](/LICENSE) — feel free to use and adapt it.
 
 ---
 
 ## 👩‍💻 Author
 
-Sohila Khaled Galal Abbas
-Data Analyst | Power BI Developer | Python Enthusiast
-[LinkedIn](www.linkedin.com/in/sohilakabbas)
+**Sohila Khaled Galal Abbas**
+*Data Analyst & Power BI Developer*
+🔗 [LinkedIn](www.linkedin.com/in/sohilakabbas) • [GitHub](https://github.com/Sohila-Khaled-Abbas)
