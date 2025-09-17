@@ -52,7 +52,6 @@ Key fields used:
 1. Clone the repo and run the notebook:
 
 ```bash
-Copy code
 git clone https://github.com/Sohila-Khaled-Abbas/global-economy-analysis.git
 cd global-economy-analysis
 ```
