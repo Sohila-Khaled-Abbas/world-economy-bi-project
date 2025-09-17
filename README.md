@@ -50,27 +50,6 @@ flowchart LR
 4. **Load** – Save processed CSV
 5. **Insights** – Correlation analysis + recommendations
 
----
-
-## 📁 Folder Structure
-
-```wasm
-📦 global-economy-analysis
-├── data
-│   ├── WorldBank.xlsx
-│   ├── HDI.csv
-│   └── processed_data.csv
-├── notebooks
-│   └── global_economy_etl.ipynb
-├── reports
-│   └── images/
-│       ├── GDP_hist.png
-│       ├── GDP_per_Capita_hist.png
-│       ├── Population_(M)_hist.png
-│       └── HDI_hist.png
-├── README.md
-└── LICENSE
-```
 
 ---
 
@@ -105,7 +84,7 @@ pip install -r requirements.txt
 
 ## 🛠 How to rebuild the PBIX (exact steps)
 
-*Follow the step-by-step instructions in `BUILD_PBIX.md` (or see the “Build the .pbix — step-by-step” section of this README).*
+*Follow the step-by-step instructions in [`BUILD_PBIX.md`](/reports/BUILD_PBIX.md) (or see the “Build the .pbix — step-by-step” section of this README).*
 
 ### Key points:
 
