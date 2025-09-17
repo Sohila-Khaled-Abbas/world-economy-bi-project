@@ -11,33 +11,14 @@ This project covers the full **ETL pipeline**, exploratory data analysis, and in
 
 ---
 
-## 📑 Table of Contents
+## 🚀 What’s included
 
-- [🌍 Global Economy Analysis (World Bank + HDI)](#-global-economy-analysis-world-bank--hdi)
-  - [📑 Table of Contents](#-table-of-contents)
-  - [📖 About the Project](#-about-the-project)
-  - [📂 Dataset Description](#-dataset-description)
-  - [🔧 Project Pipeline](#-project-pipeline)
-  - [📁 Folder Structure](#-folder-structure)
-  - [⚙️ Setup \& Installation](#️-setup--installation)
-  - [📊 Results \& Insights](#-results--insights)
-    - [Sample histograms](#sample-histograms)
-  - [Future Improvements](#future-improvements)
-  - [📜 License](#-license)
-  - [👩‍💻 Author](#-author)
-
----
-
-## 📖 About the Project
-
-This project demonstrates **Business Intelligence Project Management best practices**:
-
-- 🔄 **ETL (Extract, Transform, Load)** pipeline using Python  
-- 📊 **Data Profiling** with `skimpy`  
-- 📈 **One-page Power BI report** summarizing economic insights  
-- 💡 **Actionable metrics**: GDP, GDP per Capita, Population, HDI, Life Expectancy  
-
-The notebook is **fully reproducible** — it auto-installs dependencies and saves processed outputs for easy visualization in Power BI or any BI tool.
+- `data/processed_data.csv` — cleaned dataset produced by ETL notebook.
+- `notebooks/global_economy_etl.ipynb` — ETL and profiling steps (skimpy).
+- `powerbi/GlobalEconomy.pbix` — Power BI dashboard (final deliverable).
+- `reports/` — generated profiling HTML & images.
+- `images/` — dashboard previews & story graphics.
+- `README.md`, `LICENSE`, `.gitignore`, `requirements.txt`.
 
 ---
 
@@ -95,22 +76,43 @@ flowchart LR
 
 ## ⚙️ Setup & Installation
 
-Clone the repo and run the notebook:
+1. Clone the repo and run the notebook:
 
 ```bash
 Copy code
 git clone https://github.com/Sohila-Khaled-Abbas/global-economy-analysis.git
 cd global-economy-analysis
+```
 
+2. Install Python deps and run notebook (optional):
+
+```python
 # Launch Jupyter
 jupyter notebook notebooks/global_economy_etl.ipynb
 
 # Install dependencies
 pip install -r requirements.txt
-
+# Run cells to regenerate data/processed_data.csv and reports/
 ```
-Dependencies are installed automatically by the notebook (`pandas`, `matplotlib`, `skimpy`).
 
+*Dependencies are installed automatically by the notebook (`pandas`, `matplotlib`, `skimpy`).*
+
+3. Open Power BI:
+
+- File → Open → `powerbi/GlobalEconomy.pbix` **(or)** Home → Get Data → Text/CSV → select `data/processed_data.csv` then follow Build steps below.
+
+---
+
+## 🛠 How to rebuild the PBIX (exact steps)
+
+*Follow the step-by-step instructions in `BUILD_PBIX.md` (or see the “Build the .pbix — step-by-step” section of this README).*
+
+### Key points:
+
+- Standardize column names in Power Query (Country, CountryCode, Region, Year, GDP_USD, GDP_per_Capita_USD, Population_M, HDI, Life_Expectancy, Power_kWh_per_capita).
+- Create measures: `TotalGDP`, `TotalPopulationM`, `Avg_HDI`, `Corr_GDPpc_HDI_2014` (exact DAX included in BUILD_PBIX.md).
+- Build visuals: stacked area GDP/pop, bubble chart, HDI by region, power vs GDP scatter.
+- Add bookmarks for storytelling and a tooltip page for Country details.
 
 ---
 
@@ -133,12 +135,27 @@ Dependencies are installed automatically by the notebook (`pandas`, `matplotlib`
 
 ---
 
-## Future Improvements
+## 📷 Preview
 
-- Add Power BI .pbix dashboard to the repo
-- Automate ETL pipeline with Airflow or Prefect
-- Add more indicators (education, inequality, emissions)
-- Deploy interactive dashboard via GitHub Pages or Streamlit
+See `images/dashboard.png` and `reports/images/` for profiling visuals.
+
+---
+
+## ⚙️ Reproducibility & Notes
+
+- Use **Import** mode for best performance in Power BI.
+- `powerbi/GlobalEconomy.pbix` is binary — large files may be better hosted as a release asset.
+- Keep `data/` out of the repo if any dataset is sensitive (see `.gitignore`).
+
+---
+
+## 🧭 Next steps & improvements
+
+- Automate ETL with Prefect/Airflow and CI.
+- Add more indicators (education, inequality, emissions).
+- Publish an interactive Power BI app and attach story slides.
+
+
 
 ---
 
