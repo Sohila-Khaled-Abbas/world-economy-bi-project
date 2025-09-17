@@ -134,8 +134,6 @@ See `images/dashboard.png` and `reports/images/` for profiling visuals.
 - Add more indicators (education, inequality, emissions).
 - Publish an interactive Power BI app and attach story slides.
 
-
-
 ---
 
 ## 📜 License
