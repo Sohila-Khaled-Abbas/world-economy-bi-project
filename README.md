@@ -36,13 +36,7 @@ Key fields used:
 
 ## 🔧 Project Pipeline
 
-```mermaid
-flowchart LR
-    A[Extract Data] --> B[Transform & Clean]
-    B --> C[Profile Data]
-    C --> D[Load Processed Dataset]
-    D --> E[Visualize in Power BI]
-```
+![Project Pipleine.png](/images/Project%20Pipeline.png)
 
 1. **Extract** – Import Excel + CSV data
 2. **Transform** – Filter 2014, calculate population, join HDI
