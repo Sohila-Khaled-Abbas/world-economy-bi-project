@@ -1,0 +1,83 @@
+{
+  "name": "Global Economy Dashboard Theme",
+  "version": "1.0.0",
+  "description": "A clean, developer-focused Power BI theme for global economic data storytelling. Region colors are color-blind safe, typography is consistent, and gridlines are subtle for a polished look.",
+  "$schema": "https://raw.githubusercontent.com/microsoft/powerbi-desktop-samples/main/Report%20Theme%20JSON%20Schema/reportThemeSchema-2.143.json",
+
+  "dataColors": [
+    "#1f77b4", 
+    "#ff7f0e", 
+    "#2ca02c", 
+    "#d62728", 
+    "#9467bd",
+    "#8c564b", 
+    "#e377c2"  
+  ],
+
+  "textClasses": {
+    "title": { "color": "#000000", "fontFace": "Segoe UI Semibold", "fontSize": 16 },
+    "header": { "color": "#000000", "fontFace": "Segoe UI Semibold", "fontSize": 14 },
+    "label": { "color": "#333533", "fontFace": "Segoe UI", "fontSize": 11 },
+    "callout": { "color": "#111111", "fontFace": "Segoe UI Bold", "fontSize": 18 },
+    "largeTitle": { "color": "#000000", "fontFace": "Segoe UI Bold", "fontSize": 20 }
+  },
+
+  "good": "#38b64b",
+  "neutral": "#999999",
+  "bad": "#d62728",
+  "minimum": "#dbe9f6",
+  "maximum": "#08306b",
+  "center": "#6baed6",
+  "tableAccent": "#1f77b4",
+
+  "background": "#ffffff",
+  "secondaryBackground": "#f8f9fa",
+
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [{ "color": { "solid": { "color": "#ffffff" } }, "transparency": 0 }],
+        "border": [{ "show": false }],
+        "dropShadow": [{ "show": false }],
+        "categoryAxis": [{ "showAxisTitle": false }],
+        "valueAxis": [
+          {
+            "gridlineShow": true,
+            "gridlineColor": { "solid": { "color": "#e0e0e0" } },
+            "gridlineStyle": "dotted",
+            "showAxisTitle": false
+          }
+        ],
+        "title": [{ "fontSize": 12, "bold": true }],
+        "legend": [{ "position": "TopCenter", "showTitle": false, "fontSize": 10 }],
+        "padding": [{ "top": 10 }, { "bottom": 10 }, { "left": 10 }, { "right": 10 }]
+      }
+    },
+    "card": {
+      "*": {
+        "labels": [{ "fontSize": 18, "color": { "solid": { "color": "#000000" } } }],
+        "accentBar": [{ "show": true, "position": "Top", "width": 4 }]
+      }
+    },
+    "tableEx": {
+      "*": {
+        "grid": [
+          {
+            "gridHorizontal": true,
+            "rowPadding": 4,
+            "outlineColor": { "solid": { "color": "#e0e0e0" } },
+            "outlineWeight": 0.5
+          }
+        ],
+        "columnHeaders": [{ "backColor": { "solid": { "color": "#f5f5f5" } } }]
+      }
+    },
+    "stackedAreaChart": {
+      "*": {
+        "legend": [{ "position": "Right", "fontSize": 9 }],
+        "categoryAxis": [{ "fontSize": 9 }],
+        "valueAxis": [{ "fontSize": 9 }]
+      }
+    }
+  }
+}
