@@ -39,7 +39,7 @@ We welcome contributions to improve this project — whether it's:
 
 ### 📜 Code of Conduct
 
-This project follows a [Contributor Covenant Code of Conduct](https://www.contributor-covenant.org/).
+This project follows a [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md).
 Please be respectful, constructive, and professional in all interactions.
 
 ---
