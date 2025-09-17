@@ -1,0 +1,113 @@
+name: 🔍 Power BI QA Workflow
+
+on:
+  push:
+    branches: [ "main" ]
+    tags:
+      - 'v*.*.*'
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  pbix-quality-check:
+    name: 🧪 PBIX & Repo Quality Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout repo
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      # 2️⃣ Set up Python (for schema & data validation)
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      # 3️⃣ Install dependencies
+      - name: 📦 Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas jsonschema
+
+      # 4️⃣ Validate processed_data.csv exists & is not empty
+      - name: ✅ Validate Processed Dataset
+        run: |
+          python - <<'EOF'
+          import pandas as pd, sys, os
+          path = "data/processed_data.csv"
+          if not os.path.exists(path):
+              sys.exit(f"❌ {path} is missing. Run ETL notebook before commit.")
+          df = pd.read_csv(path)
+          if df.empty:
+              sys.exit("❌ processed_data.csv is empty.")
+          required_cols = {"Year","Region","GDP","GDP per Capita","Population (M)","HDI"}
+          missing = required_cols - set(df.columns)
+          if missing:
+              sys.exit(f"❌ Missing required columns: {missing}")
+          print(f"✅ {path} validated: {len(df)} rows, {len(df.columns)} columns.")
+          EOF
+
+      # 5️⃣ Validate Theme JSON against schema (basic)
+      - name: 🎨 Validate Theme JSON
+        run: |
+          python - <<'EOF'
+          import json, sys
+          from pathlib import Path
+
+          theme_path = Path("themes/global_economy.json")
+          if not theme_path.exists():
+              sys.exit("❌ Theme file not found.")
+          with open(theme_path, "r", encoding="utf-8") as f:
+              try:
+                  json.load(f)
+              except json.JSONDecodeError as e:
+                  sys.exit(f"❌ Theme JSON is invalid: {e}")
+          print("✅ Theme JSON is syntactically valid.")
+          EOF
+
+      # 6️⃣ Check README & BUILD_PBIX exist
+      - name: 📄 Validate Documentation
+        run: |
+          for file in README.md BUILD_PBIX.md; do
+            if [ ! -f "$file" ]; then
+              echo "❌ Missing documentation file: $file"
+              exit 1
+            fi
+          done
+          echo "✅ Documentation files present."
+
+      # 7️⃣ Optional: Check PBIX size (warn if > 50 MB)
+      - name: 📏 Check PBIX Size
+        run: |
+          if [ -f powerbi/global_economy_dashboard.pbix ]; then
+            size=$(du -m powerbi/global_economy_dashboard.pbix | cut -f1)
+            if [ "$size" -gt 50 ]; then
+              echo "⚠️ PBIX file is large (${size}MB). Consider removing unused columns or aggregating data."
+            else
+              echo "✅ PBIX file size is acceptable (${size}MB)."
+            fi
+          else
+            echo "ℹ️ PBIX file not found — skipping size check."
+          fi
+      # 7️⃣ Optional: Check PBIX size (warn if > 50 MB)
+      - name: 📏 Check PBIX Size
+        run: |
+          if [ -f powerbi/global_economy_dashboard.pbix ]; then
+            size=$(du -m powerbi/global_economy_dashboard.pbix | cut -f1)
+            if [ "$size" -gt 50 ]; then
+              echo "⚠️ PBIX file is large (${size}MB). Consider removing unused columns or aggregating data."
+            else
+              echo "✅ PBIX file size is acceptable (${size}MB)."
+            fi
+          else
+            echo "ℹ️ PBIX file not found — skipping size check."
+          fi
+
+      # 8️⃣ Upload PBIX as Artifact
+      - name: 📤 Upload PBIX Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: global-economy-dashboard-pbix
+          path: powerbi/global_economy_dashboard.pbix
+          if-no-files-found: warn

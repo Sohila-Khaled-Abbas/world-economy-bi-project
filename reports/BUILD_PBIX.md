@@ -185,4 +185,4 @@ By following this guide, you will produce:
 
 ---
 
-💡 **Pro Tip**: Commit your PBIX + screenshots in `/images/` to GitHub so recruiters can preview your work without downloading the file.
+> 💡 **Pro Tip**: Commit your PBIX + screenshots in `/images/` to GitHub so recruiters can preview your work without downloading the file.

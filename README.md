@@ -5,6 +5,8 @@
 ![Status](https://img.shields.io/badge/Project%20Status-Active-success)
 ![Power BI](https://img.shields.io/badge/BI%20Tool-Power%20BI-yellow)
 ![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange)
+[![PBIX QA Workflow](https://github.com/Sohila-Khaled-Abbas/world-economy-bi-project/.github/workflows/pbix-qa.yml/badge.svg)](https://github.com/Sohila-Khaled-Abbas/world-economy-bi-project/.github/workflows/pbix-qa.yml)
+> **Status:** This badge shows whether the latest commit on `main` passed all quality checks (data validation, theme check, PBIX size check).
 
 A **data-driven one-page report** on the state of the global economy using World Bank and UN HDI datasets.  
 This project covers the full **ETL pipeline**, exploratory data analysis, and insight generation — preparing data for **Power BI dashboarding**.
