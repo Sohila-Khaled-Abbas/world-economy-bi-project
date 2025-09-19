@@ -5,29 +5,40 @@
 ![Status](https://img.shields.io/badge/Project%20Status-Active-success)
 ![Power BI](https://img.shields.io/badge/BI%20Tool-Power%20BI-yellow)
 ![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange)
+![Live Preview](https://img.shields.io/badge/▶%20Live%20Preview-Click%20to%20View-green?style=for-the-badge)](images/dashboard_preview.gif)
+
 
 A **data-driven one-page report** on the state of the global economy using World Bank and UN HDI datasets.  
-This project covers the full **ETL pipeline**, exploratory data analysis, and insight generation — preparing data for **Power BI dashboarding**.
+This project covers the full **ETL pipeline**, schema validation, profiling, and insight generation — preparing data for **Power BI dashboarding**.
 
 ---
 
 ## 🚀 What’s included
 
-- `data/processed_data.csv` — cleaned dataset produced by ETL notebook.
-- `notebooks/global_economy_etl.ipynb` — ETL and profiling steps (skimpy).
-- `powerbi/GlobalEconomy.pbix` — Power BI dashboard (final deliverable).
-- `reports/` — generated profiling HTML & images.
-- `images/` — dashboard previews & story graphics.
-- `README.md`, `LICENSE`, `.gitignore`, `requirements.txt`.
+```markdown
+| Folder/File                                        | Description                                                                       |
+| -------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `src/data_ingestion.py`                            | Python ETL (Extract + Merge + Save) with schema validation                        |
+| `tests/test_data_ingestion.py`                     | Automated unit tests (pytest) for ingestion & merge                               |
+| `notebooks/01_data_profiling_and_validation.ipynb` | Post-ingestion QA & profiling notebook (schema validation + missing data heatmap) |
+| `data/processed_data.csv`                          | Cleaned dataset produced by ETL notebook                                          |
+| `reports/BUILD_PBIX.md`                            | Step-by-step guide + DAX code for Power BI                                        |
+| `powerbi/GlobalEconomy.pbix`                       | Final dashboard (binary file)                                                     |
+| `reports/images/`                                  | Profiling visualizations & histograms                                             |
+| `images/`                                          | Dashboard preview & pipeline diagram                                              |
+| `requirements.txt`                                 | Reproducible Python environment                                                   |
+```
 
 ---
 
 ## 📂 Dataset Description
 
+```markdown
 | Dataset                     | Source               | Records | Fields | Format |
 | --------------------------- | -------------------- | ------- | ------ | ------ |
 | **World Bank Indicators**   | World Bank Open Data | 12,657  | 58     | Excel  |
 | **Human Development Index** | United Nations       | ~200    | 2      | CSV    |
+```
 
 Key fields used:  
 `GDP (USD)`, `GDP per capita (USD)`, `Year`, `Country Code`, `Region`, `Life Expectancy`, `Power Consumption`, `HDI`.
@@ -38,64 +49,68 @@ Key fields used:
 
 ![Project Pipleine.png](/images/Project%20Pipeline.png)
 
-1. **Extract** – Import Excel + CSV data
-2. **Transform** – Filter 2014, calculate population, join HDI
-3. **Profile** – Summary statistics + histograms
-4. **Load** – Save processed CSV
-5. **Insights** – Correlation analysis + recommendations
-
+1. **Extract** → Load multi-sheet Excel + HDI CSV (`src/data_ingestion.py`)
+2. **Validate** → Schema check with [Pandera](https://pandera.readthedocs.io)
+3. **Transform** → Filter 2014, calculate population, join HDI
+4. **Profile** → EDA notebook (skimpy + missing data heatmap)
+5. **Load** → Save data`/processed_data.csv`
+6. **Visualize** → Build Power BI report using [BUILD_PBIX.md](/reports/BUILD_PBIX.md)
+7. **Insights** → Export dashboard screenshots + correlation summary
 
 ---
 
 ## ⚙️ Setup & Installation
 
-1. Clone the repo and run the notebook:
+1. Clone the repo and install dependencies:
 
 ```bash
 git clone https://github.com/Sohila-Khaled-Abbas/global-economy-analysis.git
 cd global-economy-analysis
-```
-
-2. Install Python deps and run notebook (optional):
-
-```python
-# Launch Jupyter
-jupyter notebook notebooks/global_economy_etl.ipynb
 
 # Install dependencies
 pip install -r requirements.txt
-# Run cells to regenerate data/processed_data.csv and reports/
 ```
 
-*Dependencies are installed automatically by the notebook (`pandas`, `matplotlib`, `skimpy`).*
+2. Run ETL:
 
-3. Open Power BI:
+```bash
+python src/data_ingestion.py
+```
 
-- File → Open → `powerbi/GlobalEconomy.pbix` **(or)** Home → Get Data → Text/CSV → select `data/processed_data.csv` then follow Build steps below.
+3. Run tests:
+
+```bash
+pytest -v
+```
+
+4. Run profiling notebook:
+
+```bash
+jupyter notebook 
+notebooks/data_profiling_and_validation.ipynb
+```
 
 ---
 
-## 🛠 How to rebuild the PBIX (exact steps)
+## 🛠 Building the Power BI Dashboard
 
-*Follow the step-by-step instructions in [`BUILD_PBIX.md`](/reports/BUILD_PBIX.md) (or see the “Build the .pbix — step-by-step” section of this README).*
+Follow [BUILD_PBIX.md](/reports/BUILD_PBIX.md) for **click-by-click** **instructions** & paste-ready DAX.
 
-### Key points:
-
-- Standardize column names in Power Query (Country, CountryCode, Region, Year, GDP_USD, GDP_per_Capita_USD, Population_M, HDI, Life_Expectancy, Power_kWh_per_capita).
-- Create measures: `TotalGDP`, `TotalPopulationM`, `Avg_HDI`, `Corr_GDPpc_HDI_2014` (exact DAX included in BUILD_PBIX.md).
-- Build visuals: stacked area GDP/pop, bubble chart, HDI by region, power vs GDP scatter.
-- Add bookmarks for storytelling and a tooltip page for Country details.
+- Standardize column names in Power Query
+- Create measures: `TotalGDP`, `TotalPopulationM`, `Avg_HDI`, `Corr_GDPpc_HDI_2014`
+- Build visuals: Stacked area GDP & population, Bubble chart (Life vs GDPpc), HDI bar chart, Power vs GDP scatter
+- Add bookmarks for storytelling & tooltip pages for country drill-through
 
 ---
 
-## 📊 Results & Insights
+## 📊 Key Insights (2014)
 
 ```markdown
-| Metric                              | Key Insight                                   |
-| ----------------------------------- | --------------------------------------------- |
-| Correlation (GDP per Capita vs HDI) | 0.82 (Strong positive)                        |
-| Population Distribution             | Asia & Africa hold majority of population     |
-| HDI Ranking                         | Europe has highest average HDI, Africa lowest |
+| Metric                              | Insight                                   |
+| ----------------------------------- | ----------------------------------------- |
+| Correlation (GDP per Capita vs HDI) | **0.85** (Strong positive correlation)    |
+| Population Distribution             | Asia & Africa account for most population |
+| HDI Ranking                         | Europe highest, Africa lowest             |
 ```
 
 ### Sample histograms
@@ -109,23 +124,34 @@ pip install -r requirements.txt
 
 ## 📷 Preview
 
-See `images/dashboard.png` and `reports/images/` for profiling visuals.
+See more charts in `reports/images/`.
 
 ---
 
-## ⚙️ Reproducibility & Notes
+## 🧪 Testing & QA
 
-- Use **Import** mode for best performance in Power BI.
-- `powerbi/GlobalEconomy.pbix` is binary — large files may be better hosted as a release asset.
-- Keep `data/` out of the repo if any dataset is sensitive (see `.gitignore`).
+ **Unit tests** in `tests/test_data_ingestion.py` check:
+- Excel sheet combination
+- CSV load
+- Left-join correctness on Country Code
+
+**Schema validation** ensures key columns exist (Country Code, GDP, GDP per Capita)
+
+**Profiling notebook** generates:
+
+- Summary stats
+- Missing value heatmap
+- Key distribution histograms
+
 
 ---
 
-## 🧭 Next steps & improvements
+## 🧭 Roadmap
 
-- Automate ETL with Prefect/Airflow and CI.
-- Add more indicators (education, inequality, emissions).
-- Publish an interactive Power BI app and attach story slides.
+- Automate ETL with Prefect/Airflow + GitHub Actions
+- Publish interactive Power BI report (Power BI Service)
+- Add more indicators (education, inequality, emissions)
+- Deploy to GitHub Pages with interactive profiling report
 
 ---
 

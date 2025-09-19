@@ -12,3 +12,9 @@ ipykernel>=6.25.0
 # For displaying HTML in Jupyter
 IPython>=8.0.0
 from IPython.display import display, HTML
+
+pandera>=0.16.0
+# For data validation
+
+# Optional: For enhanced visualizations
+seaborn>=0.12.0
