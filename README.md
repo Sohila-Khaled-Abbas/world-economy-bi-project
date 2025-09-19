@@ -5,7 +5,7 @@
 ![Status](https://img.shields.io/badge/Project%20Status-Active-success)
 ![Power BI](https://img.shields.io/badge/BI%20Tool-Power%20BI-yellow)
 ![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange)
-![Live Preview](https://img.shields.io/badge/▶%20Live%20Preview-Click%20to%20View-green?style=for-the-badge)](images/dashboard_preview.gif)
+![Live Preview](https://img.shields.io/badge/▶%20Live%20Preview-Click%20to%20View-green?style=for-the-badge)
 
 
 A **data-driven one-page report** on the state of the global economy using World Bank and UN HDI datasets.  
@@ -15,7 +15,7 @@ This project covers the full **ETL pipeline**, schema validation, profiling, and
 
 ## 🚀 What’s included
 
-```markdown
+```table
 | Folder/File                                        | Description                                                                       |
 | -------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `src/data_ingestion.py`                            | Python ETL (Extract + Merge + Save) with schema validation                        |
@@ -33,7 +33,7 @@ This project covers the full **ETL pipeline**, schema validation, profiling, and
 
 ## 📂 Dataset Description
 
-```markdown
+```table
 | Dataset                     | Source               | Records | Fields | Format |
 | --------------------------- | -------------------- | ------- | ------ | ------ |
 | **World Bank Indicators**   | World Bank Open Data | 12,657  | 58     | Excel  |
@@ -105,7 +105,7 @@ Follow [BUILD_PBIX.md](/reports/BUILD_PBIX.md) for **click-by-click** **instruct
 
 ## 📊 Key Insights (2014)
 
-```markdown
+```table
 | Metric                              | Insight                                   |
 | ----------------------------------- | ----------------------------------------- |
 | Correlation (GDP per Capita vs HDI) | **0.85** (Strong positive correlation)    |
