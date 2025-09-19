@@ -15,7 +15,6 @@ This project covers the full **ETL pipeline**, schema validation, profiling, and
 
 ## 🚀 What’s included
 
-```table
 | Folder/File                                        | Description                                                                       |
 | -------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `src/data_ingestion.py`                            | Python ETL (Extract + Merge + Save) with schema validation                        |
@@ -27,18 +26,15 @@ This project covers the full **ETL pipeline**, schema validation, profiling, and
 | `reports/images/`                                  | Profiling visualizations & histograms                                             |
 | `images/`                                          | Dashboard preview & pipeline diagram                                              |
 | `requirements.txt`                                 | Reproducible Python environment                                                   |
-```
 
 ---
 
 ## 📂 Dataset Description
 
-```table
 | Dataset                     | Source               | Records | Fields | Format |
 | --------------------------- | -------------------- | ------- | ------ | ------ |
 | **World Bank Indicators**   | World Bank Open Data | 12,657  | 58     | Excel  |
 | **Human Development Index** | United Nations       | ~200    | 2      | CSV    |
-```
 
 Key fields used:  
 `GDP (USD)`, `GDP per capita (USD)`, `Year`, `Country Code`, `Region`, `Life Expectancy`, `Power Consumption`, `HDI`.
@@ -105,13 +101,12 @@ Follow [BUILD_PBIX.md](/reports/BUILD_PBIX.md) for **click-by-click** **instruct
 
 ## 📊 Key Insights (2014)
 
-```table
 | Metric                              | Insight                                   |
 | ----------------------------------- | ----------------------------------------- |
 | Correlation (GDP per Capita vs HDI) | **0.85** (Strong positive correlation)    |
 | Population Distribution             | Asia & Africa account for most population |
 | HDI Ranking                         | Europe highest, Africa lowest             |
-```
+
 
 ### Sample histograms
 
