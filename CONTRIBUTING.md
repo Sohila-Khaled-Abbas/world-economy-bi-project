@@ -15,6 +15,7 @@ This project is maintained and developed with ❤️ by the following contributo
 ## 🌱 How to Contribute
 
 We welcome contributions to improve this project — whether it's:
+
 - 🐛 Reporting bugs
 - ✨ Suggesting new features
 - 🧹 Improving documentation
@@ -23,12 +24,14 @@ We welcome contributions to improve this project — whether it's:
 ### 🔧 Contribution Workflow
 
 1. **Fork** the repository  
-2. **Create a branch** for your feature/fix:  
+2. **Create a branch** for your feature/fix:
+
    ```bash
    git checkout -b feature/amazing-improvement
    ```
 
 3. **Commit** your changes with a clear message:
+
    ```bash
    git commit -m "feat: add new insight chart for GDP vs HDI"
    ```
@@ -53,4 +56,4 @@ All contributors are recognized in:
 - **Release notes** for major contributions
 
 > 💡 **Pro Tip**: Even small contributions (fixing typos, updating DAX comments) are valuable.
-> Your name will appear here once your PR is merged!
+> Your name will appear here once your PR is merged
