@@ -169,6 +169,21 @@ See more charts in `reports/images/`.
 
 ---
 
+## 🔄 CI/CD Pipeline
+
+This repo uses **GitHub Actions** for continuous integration & deployment:
+
+- ✅ Runs pytest for ingestion validation
+- 🐳 Builds Docker container
+- 🚀 Deploys to Render automatically on push to `main`
+
+To enable:
+
+- Add your Render deploy hook as a GitHub Secret: `RENDER_DEPLOY_HOOK`
+- Push changes to `main` branch → pipeline auto-runs
+
+---
+
 ## 🧭 Roadmap
 
 - Automate ETL with Prefect/Airflow + GitHub Actions
