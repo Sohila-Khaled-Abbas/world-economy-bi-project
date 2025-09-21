@@ -7,7 +7,6 @@
 ![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange)
 [![Live Preview](https://img.shields.io/badge/▶%20Live%20Preview-Click%20to%20View-green?style=for-the-badge)]()
 
-
 A **data-driven one-page report** on the state of the global economy using World Bank and UN HDI datasets.  
 This project covers the full **ETL pipeline**, schema validation, profiling, and insight generation — preparing data for **Power BI dashboarding**.
 
@@ -15,17 +14,19 @@ This project covers the full **ETL pipeline**, schema validation, profiling, and
 
 ## 🚀 What’s included
 
-| Folder/File                                        | Description                                                                       |
-| -------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `src/data_ingestion.py`                            | Python ETL (Extract + Merge + Save) with schema validation                        |
-| `tests/test_data_ingestion.py`                     | Automated unit tests (pytest) for ingestion & merge                               |
-| `notebooks/01_data_profiling_and_validation.ipynb` | Post-ingestion QA & profiling notebook (schema validation + missing data heatmap) |
-| `data/processed_data.csv`                          | Cleaned dataset produced by ETL notebook                                          |
-| `reports/BUILD_PBIX.md`                            | Step-by-step guide + DAX code for Power BI                                        |
-| `powerbi/GlobalEconomy.pbix`                       | Final dashboard (binary file)                                                     |
-| `reports/images/`                                  | Profiling visualizations & histograms                                             |
-| `images/`                                          | Dashboard preview & pipeline diagram                                              |
-| `requirements.txt`                                 | Reproducible Python environment                                                   |
+| Folder/File                                     | Description                                                            |
+| ----------------------------------------------- | ---------------------------------------------------------------------- |
+| `src/data_ingestion.py`                         | Python ETL (Extract + Merge + Save) with **Pandera schema validation** |
+| `tests/test_data_ingestion.py`                  | Automated unit tests (pytest) for ingestion & merge                    |
+| `notebooks/data_profiling_and_validation.ipynb` | Post-ingestion QA & profiling notebook (skimpy + missing data heatmap) |
+| `notebooks/api_deployment.ipynb`                | Deploy processed dataset as REST API with FastAPI                      |
+| `data/processed_data.csv`                       | Cleaned dataset produced by ETL pipeline                               |
+| `reports/BUILD_PBIX.md`                         | Step-by-step guide + paste-ready DAX for Power BI                      |
+| `powerbi/GlobalEconomy.pbix`                    | Final Power BI dashboard                                               |
+| `reports/images/`                               | Profiling visualizations & histograms                                  |
+| `images/`                                       | Dashboard preview & pipeline diagram                                   |
+| `Dockerfile` + `render.yaml`                    | Container & deployment configuration for Render/Railway                |
+| `requirements.txt`                              | Reproducible Python environment                                        |
 
 ---
 
@@ -51,7 +52,8 @@ Key fields used:
 4. **Profile** → EDA notebook (skimpy + missing data heatmap)
 5. **Load** → Save data`/processed_data.csv`
 6. **Visualize** → Build Power BI report using [BUILD_PBIX.md](/reports/BUILD_PBIX.md)
-7. **Insights** → Export dashboard screenshots + correlation summary
+7. **Deploy** → Serve dataset as API (FastAPI + Docker + Render)
+8. **Insights** → Correlation analysis + storytelling with bookmarks
 
 ---
 
@@ -99,6 +101,31 @@ Follow [BUILD_PBIX.md](/reports/BUILD_PBIX.md) for **click-by-click** **instruct
 
 ---
 
+## 🌐 Deploy as REST API
+
+1. **Local Run**:
+
+```bash
+uvicorn main:app --reload
+```
+
+Visit:
+
+- `http://127.0.0.1:8000` → Welcome message
+- `http://127.0.0.1:8000/docs` → Interactive API docs
+
+2. **Docker Build & Run**:
+
+```bash
+docker build -t global-economy-api .
+docker run -p 8000:8000 global-economy-api
+```
+
+3. **Deploy to Render/Railway**:
+Push repo → Render detects `render.yaml` → auto-deploy → get public API URL.
+
+---
+
 ## 📊 Key Insights (2014)
 
 | Metric                              | Insight                                   |
@@ -106,7 +133,6 @@ Follow [BUILD_PBIX.md](/reports/BUILD_PBIX.md) for **click-by-click** **instruct
 | Correlation (GDP per Capita vs HDI) | **0.85** (Strong positive correlation)    |
 | Population Distribution             | Asia & Africa account for most population |
 | HDI Ranking                         | Europe highest, Africa lowest             |
-
 
 ### Sample histograms
 
@@ -126,6 +152,7 @@ See more charts in `reports/images/`.
 ## 🧪 Testing & QA
 
  **Unit tests** in `tests/test_data_ingestion.py` check:
+
 - Excel sheet combination
 - CSV load
 - Left-join correctness on Country Code
@@ -138,15 +165,14 @@ See more charts in `reports/images/`.
 - Missing value heatmap
 - Key distribution histograms
 
-
 ---
 
 ## 🧭 Roadmap
 
 - Automate ETL with Prefect/Airflow + GitHub Actions
-- Publish interactive Power BI report (Power BI Service)
-- Add more indicators (education, inequality, emissions)
-- Deploy to GitHub Pages with interactive profiling report
+- Deploy interactive Power BI report to Power BI Service
+- Publish API docs + interactive notebook on GitHub Pages
+- Add education, inequality, and climate indicators
 
 ---
 
