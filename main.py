@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 import pandas as pd
 
 # Load processed dataset
-DATA_FILE = "d:\courses\Data Science\Projects\Python\world-economy-bi-project\data\processed_data.csv"
+DATA_FILE = "D:\courses\Data Science\Projects\Python\world-economy-bi-project\data\processed_data.csv"
 df = pd.read_csv(DATA_FILE)
 
 app = FastAPI(title="Global Economy API", description="Query World Bank + HDI data", version="1.0")
