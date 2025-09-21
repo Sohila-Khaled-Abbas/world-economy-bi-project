@@ -5,7 +5,7 @@
 ![Status](https://img.shields.io/badge/Project%20Status-Active-success)
 ![Power BI](https://img.shields.io/badge/BI%20Tool-Power%20BI-yellow)
 ![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange)
-![Live Preview](https://img.shields.io/badge/▶%20Live%20Preview-Click%20to%20View-green?style=for-the-badge)
+[![Live Preview](https://img.shields.io/badge/▶%20Live%20Preview-Click%20to%20View-green?style=for-the-badge)]()
 
 
 A **data-driven one-page report** on the state of the global economy using World Bank and UN HDI datasets.  
