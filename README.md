@@ -184,6 +184,22 @@ To enable:
 
 ---
 
+## 🔑 Environment Variables
+
+- Create a `.env` file in the project root:
+
+```dotenv
+APP_NAME=Global Economy API
+APP_VERSION=1.0
+HOST=0.0.0.0
+PORT=8000
+DATA_FILE=data/processed_data.csv
+```
+
+- Load with `python-dotenv` (already installed via requirements.txt).
+
+---
+
 ## 🧭 Roadmap
 
 - Automate ETL with Prefect/Airflow + GitHub Actions
