@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Status](https://img.shields.io/badge/Project%20Status-Active-success)
 ![Power BI](https://img.shields.io/badge/BI%20Tool-Power%20BI-yellow)
-![Docker](https://img.shields.io/badge/Docker-Blue)
+![Docker](https://img.shields.io/badge/Docker-blue)
 ![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange)
 [![Live Preview](https://img.shields.io/badge/▶%20Live%20Preview-Click%20to%20View-green?style=for-the-badge)]()
 
