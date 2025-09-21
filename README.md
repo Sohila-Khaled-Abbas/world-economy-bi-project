@@ -4,11 +4,13 @@
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Status](https://img.shields.io/badge/Project%20Status-Active-success)
 ![Power BI](https://img.shields.io/badge/BI%20Tool-Power%20BI-yellow)
+![Docker](https://img.shields.io/badge/Docker-Blue)
 ![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange)
 [![Live Preview](https://img.shields.io/badge/▶%20Live%20Preview-Click%20to%20View-green?style=for-the-badge)]()
 
 A **data-driven one-page report** on the state of the global economy using World Bank and UN HDI datasets.  
 This project covers the full **ETL pipeline**, schema validation, profiling, and insight generation — preparing data for **Power BI dashboarding**.
+It now also includes an **API deployment workflow** with FastAPI + Docker for online access.
 
 ---
 
