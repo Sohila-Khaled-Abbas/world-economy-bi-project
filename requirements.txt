@@ -1,38 +1,16 @@
-# Core dependencies
+# Core data libraries
 pandas>=2.0.0
-matplotlib>=3.7.0
 
-# Data profiling
-skimpy>=0.0.8
-
-# Optional: Jupyter environment
-notebook>=7.0.0
-ipykernel>=6.25.0
-
-# For displaying HTML in Jupyter
-IPython>=8.0.0
-from IPython.display import display, HTML
-
-pandera>=0.16.0
-# For data validation
-
-# Optional: For enhanced visualizations
-seaborn>=0.12.0
-
-plotly>=5.0.0
-# For interactive visualizations
-
-streamlit >=1.20.0
-# For building web apps for data visualization
-
-pyarrow   # optional if using parquet
-
-gunicorn # optional for some hosts
-
-# API
+# API stack
 fastapi>=0.111.0
 uvicorn[standard]>=0.29.0
 nest_asyncio>=1.5.6
 
-# Optional (for local Jupyter testing)
-notebook
+# EDA / Profiling (optional for local use)
+skimpy>=0.0.8
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Jupyter support (optional, for notebooks)
+notebook>=7.0.0
+ipykernel>=6.25.0
