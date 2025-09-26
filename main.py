@@ -1,25 +1,36 @@
-import os
 from dotenv import load_dotenv
-import pandas as pd
+import os, pandas as pd
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 
-# Load .env file
 load_dotenv()
-
-APP_NAME = os.getenv("APP_NAME", "Global Economy API")
-APP_VERSION = os.getenv("APP_VERSION", "1.0")
 DATA_FILE = os.getenv("DATA_FILE", "data/processed_data.csv")
-
-# Load dataset
 df = pd.read_csv(DATA_FILE)
 
-app = FastAPI(title=APP_NAME, description="Query World Bank + HDI data", version=APP_VERSION)
+app = FastAPI(title=os.getenv("APP_NAME","Global Economy API"))
 
 @app.get("/")
 async def root():
-    return {
-        "message": f"🌍 Welcome to {APP_NAME}!",
-        "rows": len(df),
-        "columns": list(df.columns)
-    }
+    return {"msg":"ok","rows": len(df)}
+
+@app.get("/summary")
+async def summary():
+    return JSONResponse(content=df.describe(include="all").to_dict())
+
+@app.get("/region/{region}")
+async def get_region(region: str):
+    df_reg = df[df["Region"].str.lower() == region.lower()]
+    if df_reg.empty:
+        raise HTTPException(404, "Region not found")
+    return JSONResponse(content=df_reg.to_dict(orient="records"))
+
+@app.get("/country/{code}")
+async def get_country(code: str):
+    df_c = df[df["Country Code"].str.upper() == code.upper()]
+    if df_c.empty:
+        raise HTTPException(404, "Country not found")
+    return JSONResponse(content=df_c.to_dict(orient="records"))
+
+@app.get("/health")
+async def health():
+    return {"status":"healthy"}
