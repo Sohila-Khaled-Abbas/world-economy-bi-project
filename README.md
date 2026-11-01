@@ -6,7 +6,7 @@
 ![Power BI](https://img.shields.io/badge/BI%20Tool-Power%20BI-yellow)
 ![Docker](https://img.shields.io/badge/Docker-blue)
 ![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange)
-[![Live Preview](https://img.shields.io/badge/▶%20Live%20Preview-Click%20to%20View-green?style=for-the-badge)]()
+**Deployment status:** live preview URL has not been verified.
 
 A **data-driven one-page report** on the state of the global economy using World Bank and UN HDI datasets.  
 This project covers the full **ETL pipeline**, schema validation, profiling, and insight generation — preparing data for **Power BI dashboarding**.
@@ -64,8 +64,8 @@ Key fields used:
 1. Clone the repo and install dependencies:
 
 ```bash
-git clone https://github.com/Sohila-Khaled-Abbas/global-economy-analysis.git
-cd global-economy-analysis
+git clone https://github.com/Sohila-Khaled-Abbas/world-economy-bi-project.git
+cd world-economy-bi-project
 
 # Install dependencies
 pip install -r requirements.txt
@@ -220,3 +220,8 @@ This project is licensed under the [MIT License](/LICENSE) — feel free to use 
 **Sohila Khaled Galal Abbas**
 *Data Analyst & Power BI Developer*
 🔗 [LinkedIn](www.linkedin.com/in/sohilakabbas) • [GitHub](https://github.com/Sohila-Khaled-Abbas)
+
+
+## Environment and clean working tree
+
+The tracked `.env` previously contained non-secret application defaults, not a credential. These can be placed in a local, ignored `.env` as needed; use the committed [example](.env.example). Python bytecode and test caches should never be committed. The existing history retains previously published files; this maintenance PR only cleans the current branch.
