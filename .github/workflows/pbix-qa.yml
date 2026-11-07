@@ -62,7 +62,7 @@ jobs:
           import sys
           from pathlib import Path
 
-          theme_path = Path("themes/global_economy.json")
+          theme_path = Path("powerbi/themes/global_economy.json")
           if not theme_path.exists():
               sys.exit("❌ Theme file not found.")
           with theme_path.open("r", encoding="utf-8") as f:
