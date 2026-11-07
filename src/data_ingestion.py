@@ -20,7 +20,7 @@ from pathlib import Path
 WorldBankSchema = pa.DataFrameSchema(
     {
         "Country Code": pa.Column(str, nullable=False),
-        "GDP": pa.Column(float, nullable=True, coerce=True),
+        "GDP": pa.Column(float, nullable=True),
     },
     strict=False,
 )
