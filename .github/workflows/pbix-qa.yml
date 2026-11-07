@@ -75,7 +75,7 @@ jobs:
 
       - name: 📄 Validate Documentation
         run: |
-          for file in README.md BUILD_PBIX.md; do
+          for file in README.md reports/BUILD_PBIX.md; do
             if [ ! -f "$file" ]; then
               echo "❌ Missing documentation file: $file"
               exit 1
