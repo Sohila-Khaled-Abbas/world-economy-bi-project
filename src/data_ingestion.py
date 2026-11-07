@@ -12,10 +12,21 @@ Date: 2025-09-17
 """
 
 import pandas as pd
+import pandera as pa
 from pathlib import Path
 
+# Minimum schema expected by the World Bank GDP ingestion path.
+# strict=False permits additional indicator columns from source workbooks.
+WorldBankSchema = pa.DataFrameSchema(
+    {
+        "Country Code": pa.Column(str, nullable=False),
+        "GDP": pa.Column(float, nullable=True, coerce=True),
+    },
+    strict=False,
+)
+
 # ---------- CONFIGURATION ----------
-DATA_DIR = Path("D:\courses\Data Science\Projects\Python\world-economy-bi-project\data")
+DATA_DIR = Path("D:\\courses\\Data Science\\Projects\\Python\\world-economy-bi-project\\data")
 WORLD_BANK_FILE = DATA_DIR / "WorldBank.xlsx"
 HDI_FILE = DATA_DIR / "HDI.csv"
 
@@ -33,6 +44,7 @@ def load_world_bank_data(filepath: Path) -> pd.DataFrame:
     print(f"📥 Loading World Bank data from {filepath}...")
     xls = pd.ExcelFile(filepath)
     sheets = xls.sheet_names
+
     print(f"🔎 Found sheets: {sheets}")
 
     dfs = []
